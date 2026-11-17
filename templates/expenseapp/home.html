@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Expense Management System</title>
+
+    <style>
+
+        /* ---------- BASIC SETTINGS ---------- */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            color: #222;
+            background-color: #ffffff;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+
+        /* ---------- NAVBAR ---------- */
+
+        nav {
+            height: 70px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 0 8%;
+
+            background-color: #ffffff;
+            border-bottom: 1px solid #eeeeee;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #2563eb;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #333;
+            font-size: 15px;
+        }
+
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+
+        .login-btn {
+            border: 1px solid #2563eb;
+            padding: 9px 18px;
+            border-radius: 6px;
+            color: #2563eb !important;
+        }
+
+        .register-btn {
+            background-color: #2563eb;
+            color: white !important;
+            padding: 10px 18px;
+            border-radius: 6px;
+        }
+
+
+        /* ---------- HERO SECTION ---------- */
+
+        .hero {
+            min-height: 500px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+
+            padding: 60px 20px;
+
+            background-color: #f5f8ff;
+        }
+
+        .hero-content {
+            max-width: 750px;
+        }
+
+        .hero h1 {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: #2563eb;
+        }
+
+        .hero p {
+            font-size: 19px;
+            line-height: 1.7;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .primary-btn {
+            background-color: #2563eb;
+            color: white;
+            padding: 13px 25px;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        .secondary-btn {
+            border: 1px solid #2563eb;
+            color: #2563eb;
+            padding: 13px 25px;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+
+        /* ---------- FEATURES ---------- */
+
+        .features {
+            padding: 70px 8%;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .section-description {
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        .feature-container {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 25px;
+        }
+
+        .feature-card {
+            padding: 30px 20px;
+
+            border: 1px solid #eeeeee;
+
+            border-radius: 10px;
+
+            background-color: white;
+        }
+
+        .feature-icon {
+            font-size: 35px;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+
+        /* ---------- HOW IT WORKS ---------- */
+
+        .how-it-works {
+            padding: 70px 8%;
+            text-align: center;
+
+            background-color: #f8f9fa;
+        }
+
+        .steps {
+            display: flex;
+            justify-content: center;
+
+            gap: 30px;
+
+            margin-top: 40px;
+        }
+
+        .step {
+            max-width: 220px;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+
+            margin: 0 auto 15px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background-color: #2563eb;
+            color: white;
+
+            font-weight: bold;
+        }
+
+        .step h3 {
+            margin-bottom: 10px;
+        }
+
+        .step p {
+            color: #666;
+        }
+
+
+        /* ---------- ABOUT ---------- */
+
+        .about {
+            padding: 70px 15%;
+            text-align: center;
+        }
+
+        .about p {
+            color: #555;
+            line-height: 1.8;
+            margin: 20px 0;
+        }
+
+        .tech {
+            font-weight: bold;
+            color: #2563eb;
+        }
+
+
+        /* ---------- CALL TO ACTION ---------- */
+
+        .cta {
+            padding: 70px 20px;
+
+            text-align: center;
+
+            background-color: #2563eb;
+
+            color: white;
+        }
+
+        .cta h2 {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .cta p {
+            margin-bottom: 25px;
+        }
+
+        .cta a {
+            display: inline-block;
+
+            background-color: white;
+            color: #2563eb;
+
+            padding: 13px 25px;
+
+            border-radius: 6px;
+
+            font-weight: bold;
+        }
+
+
+        /* ---------- FOOTER ---------- */
+
+        footer {
+            padding: 30px;
+
+            text-align: center;
+
+            background-color: #111827;
+
+            color: white;
+        }
+
+        footer p {
+            margin: 7px;
+        }
+
+
+        /* ---------- MOBILE ---------- */
+
+        @media (max-width: 768px) {
+
+            .nav-links {
+                gap: 10px;
+            }
+
+            .nav-links a {
+                font-size: 12px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .feature-container {
+                grid-template-columns: 1fr;
+            }
+
+            .steps {
+                flex-direction: column;
+                align-items: center;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav>
+
+        <div class="logo">
+            💰 <span>ExpenseTrack</span>
+        </div>
+
+        <div class="nav-links">
+
+            <a href="#home">
+                Home
+            </a>
+
+            <a href="#features">
+                Features
+            </a>
+
+            <a href="#about">
+                About
+            </a>
+
+            <a href="{% url 'login' %}"
+               class="login-btn">
+                Login
+            </a>
+
+            <a href="{% url 'register' %}"
+               class="register-btn">
+                Register
+            </a>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <h1>
+                Manage Your
+                <span>Expenses</span>
+                Smarter
+            </h1>
+
+            <p>
+                Track your daily expenses, monitor your
+                spending, and manage shared expenses
+                easily in one place.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="{% url 'register' %}"
+                   class="primary-btn">
+                    Get Started
+                </a>
+
+                <a href="{% url 'login' %}"
+                   class="secondary-btn">
+                    Login
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= FEATURES ================= -->
+
+    <section class="features" id="features">
+
+        <h2 class="section-title">
+            Everything You Need
+        </h2>
+
+        <p class="section-description">
+            Simple tools to help you manage your expenses.
+        </p>
+
+
+        <div class="feature-container">
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    💰
+                </div>
+
+                <h3>
+                    Expense Tracking
+                </h3>
+
+                <p>
+                    Add, update and delete your
+                    daily expenses easily.
+                </p>
+
+            </div>
+
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    📊
+                </div>
+
+                <h3>
+                    Dashboard
+                </h3>
+
+                <p>
+                    View your total and monthly
+                    expenses in one place.
+                </p>
+
+            </div>
+
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    👤
+                </div>
+
+                <h3>
+                    Personal Expenses
+                </h3>
+
+                <p>
+                    Each user can view only
+                    their own expenses.
+                </p>
+
+            </div>
+
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    👥
+                </div>
+
+                <h3>
+                    Shared Expenses
+                </h3>
+
+                <p>
+                    Easily split expenses between
+                    multiple people.
+                </p>
+
+            </div>
+
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    🧮
+                </div>
+
+                <h3>
+                    Amount Owed
+                </h3>
+
+                <p>
+                    Calculate how much you owe
+                    for shared expenses.
+                </p>
+
+            </div>
+
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    📅
+                </div>
+
+                <h3>
+                    Monthly Tracking
+                </h3>
+
+                <p>
+                    Filter and view expenses
+                    for a selected month.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= HOW IT WORKS ================= -->
+
+    <section class="how-it-works">
+
+        <h2 class="section-title">
+            How It Works
+        </h2>
+
+        <p class="section-description">
+            Manage your expenses in four simple steps.
+        </p>
+
+
+        <div class="steps">
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    01
+                </div>
+
+                <h3>
+                    Create Account
+                </h3>
+
+                <p>
+                    Register and create your
+                    personal account.
+                </p>
+
+            </div>
+
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    02
+                </div>
+
+                <h3>
+                    Add Expenses
+                </h3>
+
+                <p>
+                    Enter your daily expenses
+                    with their details.
+                </p>
+
+            </div>
+
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    03
+                </div>
+
+                <h3>
+                    Track Spending
+                </h3>
+
+                <p>
+                    Monitor your total and
+                    monthly spending.
+                </p>
+
+            </div>
+
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    04
+                </div>
+
+                <h3>
+                    Manage & Split
+                </h3>
+
+                <p>
+                    Manage shared expenses and
+                    calculate the amount owed.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= ABOUT ================= -->
+
+    <section class="about" id="about">
+
+        <h2 class="section-title">
+            About ExpenseTrack
+        </h2>
+
+        <p>
+            ExpenseTrack is an expense management
+            application that helps users record,
+            organize and monitor their daily expenses.
+            It also provides features for monthly
+            tracking and shared expense management.
+        </p>
+
+        <p class="tech">
+            Built with Python • Django • MySQL • HTML • CSS
+        </p>
+
+    </section>
+
+
+
+    <!-- ================= CALL TO ACTION ================= -->
+
+    <section class="cta">
+
+        <h2>
+            Ready to Manage Your Expenses?
+        </h2>
+
+        <p>
+            Create your account and start tracking
+            your expenses today.
+        </p>
+
+        <a href="{% url 'register' %}">
+            Create Free Account
+        </a>
+
+    </section>
+
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <p>
+            💰 ExpenseTrack
+        </p>
+
+        <p>
+            Expense Management System
+        </p>
+
+        <p>
+            © 2026 ExpenseTrack. All rights reserved.
+        </p>
+
+    </footer>
+
+
+</body>
+
+</html>

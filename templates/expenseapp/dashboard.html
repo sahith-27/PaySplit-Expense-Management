@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Expense Dashboard</title>
+</head>
+
+<body>
+
+    <h1>Expense Dashboard</h1>
+
+    <h2>Total Expenses</h2>
+    <p>₹{{ total }}</p>
+
+    <h2>Monthly Expenses</h2>
+    <p>₹{{ monthly_total }}</p>
+
+    <h2>Shared Expenses</h2>
+    <p>₹{{ shared_total }}</p>
+
+    <h2>Amount Owed</h2>
+    <p>₹{{ owed_total }}</p>
+
+    <br>
+
+    <a href="{% url 'expense-list' %}">
+        View All Expenses
+    </a>
+
+    <br><br>
+
+    <a href="{% url 'add-expense' %}">
+        Add Expense
+    </a>
+
+    <br><br>
+
+    <a href="{% url 'logout' %}">
+        Logout
+    </a>
+
+</body>
+
+</html>

@@ -1,0 +1,247 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Expenses</title>
+
+    <link rel="stylesheet" href="{% static 'expenseapp/expense.css' %}">
+</head>
+
+<body>
+
+    <div class="page-container">
+
+        <!-- HEADER -->
+        <header class="page-header">
+            <div>
+                <span class="header-tag">PERSONAL FINANCE</span>
+                <h1>My Expenses</h1>
+                <p>Manage and track your expenses easily</p>
+            </div>
+        </header>
+
+        <!-- MONTHLY EXPENSES -->
+        <section class="monthly-section">
+
+            <div class="section-heading">
+                <h2>Monthly Expenses</h2>
+                <p>Filter your expenses by month</p>
+            </div>
+
+            <form method="GET" class="month-form">
+
+                <div class="month-input-group">
+                    <label for="month">Select Month</label>
+
+                    <input
+                        type="month"
+                        id="month"
+                        name="month"
+                        value="{{ selected_month }}"
+                    >
+                </div>
+
+                <button type="submit" class="calculate-btn">
+                    Calculate
+                </button>
+
+            </form>
+
+        </section>
+
+        <!-- EXPENSE LIST -->
+        <section class="expense-section">
+
+            <div class="section-heading">
+                <h2>Expense List</h2>
+                <p>View and manage your transactions</p>
+            </div>
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Amount</th>
+                            <th>Category</th>
+                            <th>Date</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        {% for expense in expenses %}
+
+                        <tr>
+                            <td class="expense-title">
+                                {{ expense.title }}
+                            </td>
+
+                            <td class="amount">
+                                ₹{{ expense.amount }}
+                            </td>
+
+                            <td>
+                                <span class="category-badge">
+                                    {{ expense.category }}
+                                </span>
+                            </td>
+
+                            <td>
+                                {{ expense.date }}
+                            </td>
+
+                            <td class="action-buttons">
+
+                                <a
+                                    href="{% url 'update-expense' expense.id %}"
+                                    class="edit-btn"
+                                >
+                                    Edit
+                                </a>
+
+                                <a
+                                    href="{% url 'delete-expense' expense.id %}"
+                                    class="delete-btn"
+                                >
+                                    Delete
+                                </a>
+
+                            </td>
+                        </tr>
+
+                        {% empty %}
+
+                        <tr>
+                            <td colspan="5" class="empty-message">
+                                No expenses found.
+                            </td>
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+        <!-- ADD EXPENSE -->
+        <section class="add-expense-section">
+
+            <a
+                href="{% url 'add-expense' %}"
+                class="add-expense-btn"
+            >
+                + Add Expense
+            </a>
+
+        </section>
+
+        <!-- SHARED EXPENSE DETAILS -->
+        <section class="shared-section">
+
+            <div class="section-heading">
+                <h2>Shared Expense Details</h2>
+                <p>Track your shared costs and contributions</p>
+            </div>
+
+            <div class="shared-expenses">
+
+                {% for expense in expenses %}
+
+                    {% if expense.is_shared %}
+
+                        <div class="shared-card">
+
+                            <div class="shared-card-header">
+                                <h3>{{ expense.title }}</h3>
+                                <span class="shared-badge">Shared</span>
+                            </div>
+
+                            <div class="shared-detail">
+                                <span>Total Amount</span>
+                                <strong>₹{{ expense.amount }}</strong>
+                            </div>
+
+                            <div class="shared-detail">
+                                <span>Shared By</span>
+                                <strong>{{ expense.shared_people }} people</strong>
+                            </div>
+
+                            <div class="shared-detail">
+                                <span>Amount Per Person</span>
+                                <strong>₹{{ expense.amount_per_person }}</strong>
+                            </div>
+
+                            <div class="shared-detail owed-detail">
+                                <span>Amount Owed</span>
+                                <strong>₹{{ expense.amount_owed }}</strong>
+                            </div>
+
+                        </div>
+
+                    {% endif %}
+
+                {% empty %}
+
+                    <p class="no-expenses">
+                        No shared expenses found.
+                    </p>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+        <!-- TOTAL EXPENSE -->
+        <section class="total-section">
+
+            <div class="total-card">
+
+                <div>
+                    <p class="total-label">TOTAL EXPENSES</p>
+                    <h2>₹{{ total }}</h2>
+                </div>
+
+                <div class="total-icon">
+                    ₹
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- LOGOUT -->
+        <section class="logout-section">
+
+            <a
+                href="{% url 'logout' %}"
+                class="logout-btn"
+            >
+                Logout
+            </a>
+
+        </section>
+
+        <footer class="page-footer">
+            Expense Management System
+        </footer>
+
+    </div>
+
+</body>
+
+</html>
